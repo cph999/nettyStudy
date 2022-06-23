@@ -8,3 +8,5 @@
     一个channel对应一个buffer，客户端每次和buffer交互，服务器每次通过selector和channel通信
     nio的buffer是双向的与bio的单向流不同，可读可写，需要读写切换flip（）
 ![](E:/pictures/notes/nio.png)
+
+## nio和零拷贝
