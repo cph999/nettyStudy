@@ -18,6 +18,7 @@ public class nettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        //pipeline本质上是个双向链表
         //将msg转换为ByteBuf
         ByteBuf buf = (ByteBuf)msg;
         System.out.println("客户端发送消息：" + buf.toString(CharsetUtil.UTF_8));

@@ -5,14 +5,19 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.internal.SystemPropertyUtil;
+
+import java.util.concurrent.ExecutorService;
 
 public class nettyServer {
     public static void main(String[] args) throws InterruptedException {
 
         //创建 BossGroup和 WorkerGroup
         //创建两个线程组，BossGroup和和WorkerGroup，BossGroup只处理连接请求，处理客户端业务交给WorkerGroup完成
+        //bossGroup workerGroup默认子线程个数是 cpu核数 * 2
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
+
         try {
             //创建服务器启动的对象，配置参数
             ServerBootstrap serverBootstrap = new ServerBootstrap();
