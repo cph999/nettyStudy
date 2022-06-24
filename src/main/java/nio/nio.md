@@ -10,3 +10,5 @@
 ![](E:/pictures/notes/nio.png)
 
 ## nio和零拷贝
+
+[NIO好文](https://www.cnblogs.com/detectiveHLH/p/15927650.html#:~:text=%E6%8B%BF%E5%88%B0%E4%BA%86ServerSocketChannel%20%E6%88%91%E4%BB%AC%E5%B0%B1,%E5%B0%B1%E7%BB%AAIO%20%E4%BA%8B%E4%BB%B6%E6%89%8D%E8%83%BD%E9%80%9A%E8%BF%87)

@@ -3,7 +3,7 @@
 
 如上图所示，MainReactor对应bossGroup，subReactor对应workGroup，bossGroup只负责处理accept请求并生成selectionKey
 返回给workGroup中的子线程中，并将其注册到selector。
-    workGroup中的子线程包含pipeline（管道），每个管道都对应一个handler，当客户端发出非连接请求（读取/写入数据时）
+    workGroup中的子线程包含pipeline（管道），每个管道都对应很多handler（一个handler链条，双端队列），当客户端发出非连接请求（读取/写入数据时）
 bossGroup将请求直接给到workGroup中的线程，key.getChannel获取当前通道，通道进行处理。
 
 1）Reactor 主线程 MainReactor 对象通过 select 监听客户端连接事件，收到事件后，通过 Acceptor 处理客户端连接事件。
@@ -31,3 +31,5 @@ bossGroup将请求直接给到workGroup中的线程，key.getChannel获取当前
 这种模式的缺点是编程复杂度较高。但是由于其优点明显，在许多项目中被广泛使用，包括 Nginx、Memcached、Netty 等。
 
 这种模式也被叫做服务器的 1+M+N 线程模式，即使用该模式开发的服务器包含一个（或多个，1 只是表示相对较少）连接建立线程+M 个 IO 线程+N 个业务处理线程。这是业界成熟的服务器程序设计模式。
+
+![](C:/Users/17963/AppData/Local/Temp/ocmrm2pw9j.png)

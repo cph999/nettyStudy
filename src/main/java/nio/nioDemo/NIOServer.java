@@ -20,11 +20,9 @@ public class NIOServer {
         serverSocketChannel.socket().bind(new InetSocketAddress(6666));
         //设置为非阻塞
         serverSocketChannel.configureBlocking(false);
-        //把serverSocketChannel注册到selector中，关心事件为OP_ACCEPT
-        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        //把serverSocketChannel注册到selector中，0表示不关心这个channel
+        serverSocketChannel.register(selector, 0);
 
-        System.out.println(selector.keys().size());
-        System.out.println(selector.selectedKeys().size());
         //循环等待客户端链接
         while (true){
             //监听1s，如果没有响应就向下执行
@@ -34,9 +32,6 @@ public class NIOServer {
                 continue;
             }
 
-            System.out.println(selector.keys().size());
-            System.out.println(selector.selectedKeys().size());
-
             //如果返回>0,就取到相关的selectionKey集合（有事件发生的集合）
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             //遍历selectionKeys
@@ -45,6 +40,7 @@ public class NIOServer {
             while(iterator.hasNext()){
                 SelectionKey key = iterator.next();
                 if(key.isAcceptable()){  //OP_ACCEPT
+                    //把后续连接的channel全部注册到selector中，让selector监视channle
                     SocketChannel channel = serverSocketChannel.accept();
                     channel.configureBlocking(false);
                     //如果是链接事件，那么下面关注的是读事件，将serverSocketChannel注册到selector并关注读事件，关联buffer
