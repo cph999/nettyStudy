@@ -33,3 +33,4 @@ bossGroup将请求直接给到workGroup中的线程，key.getChannel获取当前
 这种模式也被叫做服务器的 1+M+N 线程模式，即使用该模式开发的服务器包含一个（或多个，1 只是表示相对较少）连接建立线程+M 个 IO 线程+N 个业务处理线程。这是业界成熟的服务器程序设计模式。
 
 ![](C:/Users/17963/AppData/Local/Temp/ocmrm2pw9j.png)
+[netty好文](https://cloud.tencent.com/developer/article/1754078)
