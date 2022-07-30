@@ -9,6 +9,10 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.text.SimpleDateFormat;
 
+/**
+ * 这是群聊系统
+ * 如果要实现点对点聊天，可以用map实现
+ */
 public class GroupChatServerHandler extends SimpleChannelInboundHandler {
     //定义一个channel组，管理所有channel
     //GlobalEventExecutor.INSTANCE是个单例的全局事件执行器

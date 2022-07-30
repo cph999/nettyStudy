@@ -18,7 +18,7 @@ public class nettyClient {
             //设置相关参数
             bootstrap.group(eventExecutors)     //设置线程组
                     .channel(NioSocketChannel.class)    //设置客户端通道实现类
-                    .handler(new ChannelInitializer<>() {
+                    .handler(new ChannelInitializer() {
                         @Override
                         protected void initChannel(Channel ch) throws Exception {
                             ch.pipeline().addLast(new nettyClientHandler()); //加入自己的处理器
