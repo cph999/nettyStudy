@@ -19,7 +19,7 @@ public class MyWebSocketHandler extends SimpleChannelInboundHandler<TextWebSocke
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         Message message = JSONObject.parseObject(msg.text(), Message.class);
-        System.out.println("服务器收到来自"+ ctx.channel().remoteAddress() +"的消息:"+ message.getMsg() + "发送给" + message.getTargetId());
+        System.out.println("服务器收到来自"+ ctx.channel().remoteAddress() +"的消息:"+ message);
         ctx.channel().writeAndFlush(new TextWebSocketFrame("服务器时间:" + LocalTime.now() + message));
     }
 

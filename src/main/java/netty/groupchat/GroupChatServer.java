@@ -9,8 +9,11 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.ServerSocketChannel;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import netty.groupchat.entity.MessagePojo;
 
 public class GroupChatServer {
     private int port;
@@ -35,8 +38,10 @@ public class GroupChatServer {
                             //获取到pipeline
                             ChannelPipeline pipeline = ch.pipeline();
                             //向pipeline加入解码器/编码器
-                            pipeline.addLast("decoder", new StringDecoder());
-                            pipeline.addLast("encoder", new StringEncoder());
+//                            pipeline.addLast("decoder", new StringDecoder());
+//                            pipeline.addLast("encoder", new StringEncoder());
+                            pipeline.addLast("decoder", new ProtobufDecoder(MessagePojo.Message.getDefaultInstance()));
+                            pipeline.addLast("encoder", new ProtobufEncoder());
                             //自己的处理器
                             pipeline.addLast(new GroupChatServerHandler());
                         }

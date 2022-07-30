@@ -1,0 +1,13 @@
+syntax = "proto3"; //协议版本
+option java_outer_classname = "MessagePojo"; //生成的外部类，也是文件名
+//protobuf 用message管理数据
+
+message User{ //会在StudentPOJO生成一个内部类，真正发送的pojo对象
+  int32 id = 1; //1表示的是属性序号，而不是值
+  string username = 2;
+  string content = 3; //消息内容
+  int32 type = 4; //消息类型
+  int32 targetId = 5; //目标用户id，0表示群聊
+  int32 groupId = 6; //群聊id，当targetId为0时候起作用
+}
+
